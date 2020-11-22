@@ -1,0 +1,26 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.tutorial-page {
+  height: 100%;
+  width: 100%;
+  background-color: var(--main-bg-color);
+}
+
+.dots {
+  height: 0 !important;
+}
+
+.dots button {
+  background-color: var(--antd-wave-shadow-color) !important;
+  pointer-events: none;
+}
+
+.tutorial-button {
+  margin: 10px;
+  position: absolute !important;
+  bottom: 0;
+}

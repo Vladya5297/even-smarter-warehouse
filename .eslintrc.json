@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "default-param-last": "off",
+    "react/prop-types": "off",
+    "no-unused-vars": "warn",
+    "eol-last": "warn",
+    "padded-blocks": "warn",
+    "spaced-comment": "warn",
+    "no-trailing-spaces": "warn",
+    "no-multiple-empty-lines": "warn",
+    "indent": "warn",
+    "react/display-name": "warn"
+  }
+}

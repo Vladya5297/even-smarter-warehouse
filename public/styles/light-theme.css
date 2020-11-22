@@ -1,0 +1,7 @@
+@import './antd.css';
+
+html {
+  --main-bg-color: white;
+  --separator-color: #bfbfbf;
+  --outline-color: #40a9ff;
+}

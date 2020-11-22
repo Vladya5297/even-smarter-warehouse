@@ -1,0 +1,74 @@
+.navigation-tree {
+  width: max-content;
+  min-width: 100%;
+}
+
+.navigation-tree :global .ant-tree-switcher {
+  display: none;
+}
+
+.navigation-tree :global .ant-tree {
+  background: none;
+}
+
+.navigation-tree :global .ant-tree-node-content-wrapper {
+  border: none !important;
+}
+
+.navigation-tree :global .ant-tree .ant-tree-treenode {
+  padding: 0;
+}
+
+.navigation-tree :global .ant-tree.ant-tree-directory .ant-tree-treenode::before {
+  bottom: 0;
+}
+
+.navigation-tree :global .ant-tree .ant-tree-treenode.drag-over-gap-top > [draggable] {
+  background-color: var(--antd-wave-shadow-color);
+  opacity: 0.8;
+}
+
+.navigation-tree :global .ant-tree .ant-tree-treenode.drag-over-gap-bottom > [draggable] {
+  background-color: var(--antd-wave-shadow-color);
+  opacity: 0.8;
+}
+
+.navigation-tree :global .ant-tree-indent-unit {
+  height: 100%;
+  width: 15px;
+}
+
+.navigation-tree :global .ant-tree-indent-unit::after {
+  content: "";
+  display: block;
+  width: 0.5px;
+  height: inherit;
+  background-color: var(--separator-color);
+  margin-left: 15px;
+}
+
+.navigation-tree :global .ant-tree-treenode:first-child {
+  box-shadow: 0px 0px 1px 1px var(--separator-color);
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 24px;
+  background-color: var(--main-bg-color);
+  z-index: 2;
+  white-space: nowrap;
+  overflow: scroll;
+}
+
+.navigation-tree :global .ant-tree-treenode:first-child::-webkit-scrollbar {
+  display: none;
+}
+
+:local .navigation-tree :global .ant-btn-text:hover, :local .navigation-tree :global .ant-btn-text:focus {
+  color: var(--outline-color);
+  background: transparent;
+}
+
+.outside {
+  flex: 1;
+}

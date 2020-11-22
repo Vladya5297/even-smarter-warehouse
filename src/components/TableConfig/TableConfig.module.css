@@ -1,0 +1,33 @@
+.field-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 5px 25px 0 5px;
+  border: solid 0.5px var(--separator-color);
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.field-wrapper :global .ant-form-item {
+  margin-bottom: 0;
+}
+
+.field-wrapper :global .ant-form-item-label {
+  flex: 1 !important;
+}
+
+.field-wrapper :global .ant-form-item-control {
+  flex: 3 !important;
+}
+
+.remove {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  height: 100%;
+  display: flex !important;
+  align-items: center;
+}
+
+.error :global(.ant-form-item-explain.ant-form-item-explain-error) {
+  position: absolute;
+}

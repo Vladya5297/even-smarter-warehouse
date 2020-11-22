@@ -1,0 +1,12 @@
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-wrapper :global .ant-btn-primary[disabled], 
+.title-wrapper :global .ant-btn-primary[disabled]:hover {
+  background-color: inherit !important;
+  color: var(--main-bg-color) !important;
+  border: none;
+  opacity: 0.5;
+}

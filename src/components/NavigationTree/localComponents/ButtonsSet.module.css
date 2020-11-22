@@ -1,0 +1,23 @@
+.buttons-set {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 200px;
+  z-index: 3;
+}
+
+.buttons-set div {
+  opacity: 0;
+  background-color: var(--main-bg-color);
+  position: absolute;
+  right: 0;
+  transition: 0.3s;
+}
+
+.buttons-set div:focus-within {
+  opacity: 1;
+}
+
+.buttons-set div:hover {
+  opacity: 1;
+}

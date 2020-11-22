@@ -1,0 +1,34 @@
+.custom-sider:global(.ant-layout-sider) {
+  min-height: 100vh;
+  box-sizing: initial;
+  background-color: var(--main-bg-color);
+  border-right: solid 2px;
+  border-right-color: var(--antd-wave-shadow-color);
+  overflow: auto;
+}
+
+.custom-sider :global .ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-wrapper {
+  margin: 0 35px;
+}
+
+.table-wrapper :global(.ant-table) {
+  box-shadow: 0 0 10px -5px var(--separator-color);
+}
+
+.breadcrumbs-wrapper {
+  margin: 15px 35px;
+}
+
+.tutorial-wrapper {
+  height: 100%;
+  padding: 35px;
+}
+
+.tutorial-wrapper * {
+  height: 100%;
+}

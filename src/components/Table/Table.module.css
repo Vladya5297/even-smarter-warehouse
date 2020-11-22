@@ -1,0 +1,12 @@
+.table-wrapper :global .ant-table-title {
+  padding: 0 !important;
+  background-color: var(--antd-wave-shadow-color);
+}
+
+.table-wrapper :global .ant-table table {
+  border-spacing: revert;
+}
+
+.table-wrapper :global .ant-table-body {
+  overflow: auto !important;
+}

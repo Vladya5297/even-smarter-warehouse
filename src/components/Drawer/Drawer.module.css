@@ -1,0 +1,11 @@
+.large :global .ant-drawer-content-wrapper {
+  width: 85% !important;
+}
+
+.medium :global .ant-drawer-content-wrapper {
+  width: 700px !important;
+}
+
+.small :global .ant-drawer-content-wrapper {
+  width: 350px !important;
+}

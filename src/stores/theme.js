@@ -7,9 +7,9 @@ class Theme {
     makeAutoObservable(this)
   }
 
-  toggle () {
+  toggle = () => {
     this.theme = this.theme === 'light' ? 'dark' : 'light'
   }
 }
 
-export const theme = new Theme()
+export const themeStore = new Theme()

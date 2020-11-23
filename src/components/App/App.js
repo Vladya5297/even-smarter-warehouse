@@ -4,6 +4,7 @@ import { NavigationTree } from 'components/NavigationTree'
 import { Alert } from 'components/Alert'
 import { Modal } from 'components/Modal'
 import { Drawer } from 'components/Drawer'
+import { ThemeProvider } from 'components/ThemeProvider'
 import { Content } from './localComponents/Content/Content'
 import classes from './App.module.css'
 
@@ -23,6 +24,7 @@ export const App = () => {
       <Alert />
       <Modal />
       <Drawer />
+      <ThemeProvider />
     </Layout>
   )
 }

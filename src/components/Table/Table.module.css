@@ -3,10 +3,10 @@
   background-color: var(--antd-wave-shadow-color);
 }
 
-.table-wrapper :global .ant-table table {
-  border-spacing: revert;
+.table-wrapper :global .ant-table-content {
+  overflow: auto;
 }
 
-.table-wrapper :global .ant-table-body {
-  overflow: auto !important;
+.table-wrapper :global .ant-table-container {
+  border: none !important;
 }

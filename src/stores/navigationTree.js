@@ -2,19 +2,6 @@ import { makeAutoObservable, toJS } from 'mobx'
 import { v4 as uuidv4 } from 'uuid'
 import { rootId } from 'constants/rootId'
 
-function deleteNodes (nodes, ids) {
-  const nodesToDelete = [...ids]
-  while (nodesToDelete.length) {
-    const id = nodesToDelete.shift()
-    nodes.forEach(node => {
-      if (node.parentId === id) {
-        nodesToDelete.push(node.id)
-      }
-    })
-    nodes.delete(id)
-  }
-}
-
 class NavigationTree {
   // state
   nodes = new Map([
@@ -39,8 +26,11 @@ class NavigationTree {
     this.nodes.set(id, node)
   }
 
-  deleteNode = (id) => {
-    deleteNodes(this.nodes, [id])
+  deleteNodes (ids) {
+    const idsArray = Array.isArray(ids) ? [...ids] : [ids]
+    idsArray.forEach(id => {
+      this.nodes.delete(id)
+    })
   }
 
   editNode = (data) => {
@@ -60,14 +50,6 @@ class NavigationTree {
     })
   }
 
-  deleteAllSelected = () => {
-    const ids = []
-    this.nodes.forEach(node => {
-      node.selected && ids.push(node.id)
-    })
-    deleteNodes(this.nodes, ids)
-  }
-
   setExpandedAll = (expanded) => {
     this.nodes.forEach(node => {
       if (!node.isLeaf && node.id !== rootId) {
@@ -83,7 +65,6 @@ class NavigationTree {
   // computed
   get current () {
     const node = this.nodes.get(this.currentId)
-    console.log('title', node && node.title)
     return node
   }
 
@@ -109,6 +90,29 @@ class NavigationTree {
 
   getNodes = () => {
     return Array.from(toJS(this.nodes).values())
+  }
+
+  getRelatedIds = (ids) => {
+    if (ids) {
+      const idsArray = Array.isArray(ids) ? [...ids] : [ids]
+      const relatedIds = [...idsArray]
+      idsArray.forEach(id => {
+        relatedIds.push(...this._getChildren(id))
+      })
+      return relatedIds
+    } else {
+      return Array.from(this.nodes.keys())
+    }
+  }
+
+  _getChildren (id) {
+    const nodes = []
+    this.nodes.forEach(node => {
+      if (node.parentId === id) {
+        nodes.push(node.id, ...this._getChildren(node.id))
+      }
+    })
+    return nodes
   }
 }
 

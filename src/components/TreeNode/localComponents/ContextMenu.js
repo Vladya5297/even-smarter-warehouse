@@ -38,14 +38,16 @@ export const ContextMenu = ({ node }) => {
   }
 
   const deleteNode = () => {
-    tableStore.remove(node.id)
-    navigationTreeStore.deleteNode(node.id)
+    const ids = navigationTreeStore.getRelatedIds(node.id)
+    tableStore.deleteTables(ids)
+    navigationTreeStore.deleteNodes(ids)
   }
 
   const deleteAllSelected = () => {
     const selectedKeys = navigationTreeStore.selectedKeys
-    tableStore.remove(selectedKeys)
-    navigationTreeStore.deleteAllSelected()
+    const ids = navigationTreeStore.getRelatedIds(selectedKeys)
+    tableStore.deleteTables(ids)
+    navigationTreeStore.deleteNodes(ids)
   }
 
   const addModal = (modal) => {

@@ -12,13 +12,13 @@ import { TableConfig } from 'components/TableConfig'
 export const Title = observer(
   function TitleObserver () {
     const currentId = navigationTreeStore.currentId
-
+    const table = tableStore.getTable(currentId)
     const hasColumns = computed(
-      () => Boolean(tableStore.tables.find(({ id }) => id === currentId).columns.length)
+      () => Boolean(table.getColumns().length)
     ).get()
 
     const addRow = () => {
-      tableStore.addRow(currentId)
+      table.addRow()
     }
 
     const addDrawer = () => {

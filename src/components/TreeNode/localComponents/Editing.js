@@ -34,8 +34,7 @@ export const Editing = React.memo(function Editing ({
   }
 
   const deleteNode = () => {
-    tableStore.remove(node.id)
-    navigationTreeStore.deleteNode(node.id)
+    navigationTreeStore.deleteNodes(node.id)
   }
 
   const setEditing = ({ editing }) => {
@@ -56,7 +55,9 @@ export const Editing = React.memo(function Editing ({
   }
 
   const addTable = () => {
-    tableStore.add(node.id)
+    if (!node.isLeaf) return
+    const table = tableStore.getTable(node.id)
+    !table && tableStore.addTable(node.id)
   }
 
   return (

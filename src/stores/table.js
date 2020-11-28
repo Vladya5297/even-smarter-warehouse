@@ -1,46 +1,58 @@
 import { columnType } from 'constants/table'
-import { makeAutoObservable, autorun } from 'mobx'
+import { v4 as uuidv4 } from 'uuid'
+import { makeAutoObservable, toJS } from 'mobx'
 
-class Table {
+class TableStore {
   // state
-  tables = []
+  tables = new Map()
+  selected = new Set()
 
   constructor () {
     makeAutoObservable(this)
   }
 
   // methods
-  add = (id) => {
-    const table = {
-      id,
-      columns: [],
-      dataSource: []
-    }
-    this.tables.push(table)
+  addTable = (id) => {
+    const table = new Table(id)
+    this.tables.set(id, table)
   }
 
-  remove = (ids) => {
-    let filtered
-    if (Array.isArray(ids)) {
-      filtered = this.tables.filter((table) => !ids.includes(table.id))
-    } else {
-      filtered = this.tables.filter((table) => table.id !== ids)
-    }
-    this.tables.replace(filtered)
+  deleteTables = (ids) => {
+    ids.forEach(id => {
+      this.tables.delete(id)
+    })
   }
 
-  setColumns = (data) => {
-    const table = this.tables.find(table => table.id === data.id)
-    table.columns = data.columns.map((column) => {
+  // computed
+  getTable = (id) => {
+    return this.tables.get(id)
+  }
+}
+
+class Table {
+  // state
+  id
+  columns = []
+  dataSource = new Map()
+  selectedRows = new Set()
+
+  constructor (id) {
+    this.id = id
+    makeAutoObservable(this)
+  }
+
+  // methods
+  setColumns = (columns) => {
+    this.columns = columns.map((column) => {
       column.dataIndex = column.id
       return column
     })
   }
 
-  addRow = (id) => {
-    const table = this.tables.find(table => table.id === id)
-    const newRow = {}
-    table.columns.forEach(column => {
+  addRow = () => {
+    const id = uuidv4()
+    const newRow = { key: id }
+    this.columns.forEach(column => {
       let value
       switch (column.type) {
         case columnType.string: {
@@ -64,10 +76,26 @@ class Table {
       }
       newRow[column.dataIndex] = value.toString()
     })
-    table.dataSource.push(newRow)
+    this.dataSource.set(id, newRow)
+  }
+
+  toggleSelected = (id) => {
+    const selected = this.selectedRows
+    selected.has(id) ? selected.delete(id) : selected.add(id)
+  }
+
+  // computed
+  getColumns = () => {
+    return toJS(this.columns)
+  }
+
+  getDataSource = () => {
+    return Array.from(toJS(this.dataSource).values())
+  }
+
+  get selected () {
+    return Array.from(toJS(this.selectedRows).values())
   }
 }
 
-export const tableStore = new Table()
-
-autorun(() => console.log('tables', tableStore.tables.slice()))
+export const tableStore = new TableStore()

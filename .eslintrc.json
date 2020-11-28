@@ -29,6 +29,8 @@
     "no-trailing-spaces": "warn",
     "no-multiple-empty-lines": "warn",
     "indent": "warn",
-    "react/display-name": "warn"
+    "react/display-name": "warn",
+    "no-debugger": "warn",
+    "comma-dangle": "warn"
   }
 }

@@ -23,6 +23,11 @@ export const NavigationTree = ({
     setIsDragging(false)
   }
 
+  const onDropHandler = ({ node, dragNode }) => {
+    onDrop({ node, dragNode })
+    setIsDragging(false)
+  }
+
   const onExpand = (_, { node }) => {
     !disabled && setExpanded({ id: node.id, expanded: !node.expanded })
   }
@@ -42,7 +47,7 @@ export const NavigationTree = ({
           selectedKeys={selectedKeys}
           disabled={disabled}
           draggable={true}
-          onDrop={onDrop}
+          onDrop={onDropHandler}
           onDragEnter={onDragEnter}
           onDragStart={onDragStart}
           onDragEnd={onDragEnd}

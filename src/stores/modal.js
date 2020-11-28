@@ -1,4 +1,4 @@
-import { makeAutoObservable, autorun } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { v4 as uuidv4 } from 'uuid'
 
 class Modal {
@@ -22,5 +22,3 @@ class Modal {
 }
 
 export const modalStore = new Modal()
-
-autorun(() => console.log('modals', modalStore.modals.slice()))

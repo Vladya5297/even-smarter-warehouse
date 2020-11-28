@@ -1,4 +1,4 @@
-import { makeAutoObservable, autorun } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { v4 as uuidv4 } from 'uuid'
 
 class Drawer {
@@ -21,5 +21,3 @@ class Drawer {
 }
 
 export const drawerStore = new Drawer()
-
-autorun(() => console.log('drawers', drawerStore.drawers.slice()))

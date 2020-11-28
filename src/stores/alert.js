@@ -1,4 +1,4 @@
-import { makeAutoObservable, autorun } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { v4 as uuidv4 } from 'uuid'
 
 class Alert {
@@ -21,5 +21,3 @@ class Alert {
 }
 
 export const alertStore = new Alert()
-
-autorun(() => console.log('alerts', alertStore.alerts.slice()))

@@ -10,7 +10,6 @@ import { tooltipTitle } from '../constants'
 import classes from './ButtonsSet.module.css'
 import { navigationTreeStore } from 'stores/navigationTree'
 import { rootId } from 'constants/rootId'
-import { toJS } from 'mobx'
 
 function ButtonsSetItem ({
   item: {
